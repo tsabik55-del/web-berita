@@ -9,75 +9,63 @@
     </a>
 </div>
 
+@php
+    $totalPengguna = \App\Models\User::count();
+    $totalKategori = \App\Models\Category::count();
+    $totalBerita = \App\Models\Article::count();
+@endphp
+
 <!-- Content Row -->
 <div class="row">
 
-    <!-- Total Berita Card -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card shadow h-100 py-2 bg-dark" style="border-left: 4px solid #d4af37; border-radius: 10px;">
+    <!-- Total Pengguna Card -->
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2 bg-dark">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: #d4af37; letter-spacing: 1px;">
-                            Total Berita</div>
-                        <div class="h5 mb-0 font-weight-bold text-white">{{ \App\Models\Product::count() }}</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-newspaper fa-2x" style="color: rgba(212, 175, 55, 0.4);"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Kategori Card -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card shadow h-100 py-2 bg-dark" style="border-left: 4px solid #d4af37; border-radius: 10px;">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: #d4af37; letter-spacing: 1px;">
-                            Kategori</div>
-                        <div class="h5 mb-0 font-weight-bold text-white">{{ \App\Models\Category::count() }}</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-folder-open fa-2x" style="color: rgba(212, 175, 55, 0.4);"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Komentar Card -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card shadow h-100 py-2 bg-dark" style="border-left: 4px solid #d4af37; border-radius: 10px;">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: #d4af37; letter-spacing: 1px;">
-                            Komentar Masuk</div>
-                        <div class="h5 mb-0 font-weight-bold text-white">{{ \App\Models\Comment::count() }}</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-comments fa-2x" style="color: rgba(212, 175, 55, 0.4);"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pengunjung Card -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card shadow h-100 py-2 bg-dark" style="border-left: 4px solid #d4af37; border-radius: 10px;">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: #d4af37; letter-spacing: 1px;">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Total Pengguna</div>
-                        <div class="h5 mb-0 font-weight-bold text-white">{{ \App\Models\User::count() }}</div>
+                        <div class="h5 mb-0 font-weight-bold text-white">{{ $totalPengguna }}</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-users fa-2x" style="color: rgba(212, 175, 55, 0.4);"></i>
+                        <i class="fas fa-users fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Kategori Card -->
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2 bg-dark">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Total Kategori</div>
+                        <div class="h5 mb-0 font-weight-bold text-white">{{ $totalKategori }}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-folder-open fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Berita Card -->
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2 bg-dark">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            Total Berita</div>
+                        <div class="h5 mb-0 font-weight-bold text-white">{{ $totalBerita }}</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-newspaper fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -120,10 +108,10 @@
             </div>
             <!-- Card Body -->
             <div class="card-body">
-                @forelse (\App\Models\Product::orderBy('created_at', 'desc')->take(3)->get() as $item)
+                @forelse (\App\Models\Article::orderBy('created_at', 'desc')->take(3)->get() as $item)
                 <div class="mb-3 p-3" style="background-color: #222; border-radius: 8px; border-left: 3px solid #d4af37;">
                     <div class="small" style="color: #d4af37;">{{ $item->created_at->diffForHumans() }}</div>
-                    <div class="text-white mt-1" style="font-weight: 500;">{{ $item->name }}</div>
+                    <div class="text-white mt-1" style="font-weight: 500;">{{ $item->title }}</div>
                 </div>
                 @empty
                 <div class="text-center py-4">
@@ -132,7 +120,7 @@
                 @endforelse
                 
                 <div class="mt-4 text-center">
-                    <a href="{{ route('admin.berita.index') }}" class="btn btn-sm btn-outline-warning w-100" style="color: #d4af37; border-color: #d4af37; border-radius: 20px;">Lihat Semua Berita <i class="fas fa-arrow-right ml-1"></i></a>
+                    <a href="{{ route('articles.index') }}" class="btn btn-sm btn-outline-warning w-100" style="color: #d4af37; border-color: #d4af37; border-radius: 20px;">Lihat Semua Berita <i class="fas fa-arrow-right ml-1"></i></a>
                 </div>
             </div>
         </div>

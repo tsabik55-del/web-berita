@@ -77,6 +77,14 @@
                 Kelola Konten
             </div>
 
+            <!-- Nav Item: Pengguna -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('users.index') }}">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Pengguna</span>
+                </a>
+            </li>
+
             <!-- Nav Item: Berita -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBerita"
@@ -88,15 +96,15 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded" style="background-color: #222 !important; border: 1px solid #333;">
                         <h6 class="collapse-header" style="color: #d4af37;">Menu Berita:</h6>
-                        <a class="collapse-item" href="{{ route('admin.berita.index') }}" style="color: #ccc;">Semua Berita</a>
-                        <a class="collapse-item" href="{{ route('admin.berita.create') }}" style="color: #ccc;">Tambah Berita</a>
+                        <a class="collapse-item" href="{{ route('articles.index') }}" style="color: #ccc;">Semua Berita</a>
+                        <a class="collapse-item" href="{{ route('articles.create') }}" style="color: #ccc;">Tambah Berita</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item: Kategori -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.kategori.index') }}">
+                <a class="nav-link" href="{{ route('categories.index') }}">
                     <i class="fas fa-fw fa-tags"></i>
                     <span>Kategori</span>
                 </a>
@@ -126,9 +134,9 @@
                 </a>
             </li>
 
-            <!-- Nav Item: Pengguna -->
+            <!-- Nav Item: Pengguna (Lama) -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.pengguna.index') }}">
+                <a class="nav-link" href="{{ route('users.index') }}">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Kelola Pengguna</span>
                 </a>

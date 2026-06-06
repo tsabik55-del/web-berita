@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -8,8 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    // Kolom yang boleh diisi secara massal (mass assignment)
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'slug', 'description'];
 
     /**
      * Satu Category memiliki banyak Product.
@@ -17,5 +17,13 @@ class Category extends Model
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    /**
+     * Satu Category memiliki banyak Article.
+     */
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
     }
 }
