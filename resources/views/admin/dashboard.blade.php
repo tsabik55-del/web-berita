@@ -20,7 +20,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: #d4af37; letter-spacing: 1px;">
                             Total Berita</div>
-                        <div class="h5 mb-0 font-weight-bold text-white">125</div>
+                        <div class="h5 mb-0 font-weight-bold text-white">{{ \App\Models\Product::count() }}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-newspaper fa-2x" style="color: rgba(212, 175, 55, 0.4);"></i>
@@ -38,7 +38,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: #d4af37; letter-spacing: 1px;">
                             Kategori</div>
-                        <div class="h5 mb-0 font-weight-bold text-white">12</div>
+                        <div class="h5 mb-0 font-weight-bold text-white">{{ \App\Models\Category::count() }}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-folder-open fa-2x" style="color: rgba(212, 175, 55, 0.4);"></i>
@@ -55,8 +55,8 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: #d4af37; letter-spacing: 1px;">
-                            Komentar Baru</div>
-                        <div class="h5 mb-0 font-weight-bold text-white">48</div>
+                            Komentar Masuk</div>
+                        <div class="h5 mb-0 font-weight-bold text-white">{{ \App\Models\Comment::count() }}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-comments fa-2x" style="color: rgba(212, 175, 55, 0.4);"></i>
@@ -73,11 +73,11 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: #d4af37; letter-spacing: 1px;">
-                            Pengunjung (Bulan Ini)</div>
-                        <div class="h5 mb-0 font-weight-bold text-white">18,500</div>
+                            Total Pengguna</div>
+                        <div class="h5 mb-0 font-weight-bold text-white">{{ \App\Models\User::count() }}</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-chart-line fa-2x" style="color: rgba(212, 175, 55, 0.4);"></i>
+                        <i class="fas fa-users fa-2x" style="color: rgba(212, 175, 55, 0.4);"></i>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
         <div class="card shadow mb-4 bg-dark" style="border: 1px solid #2a2a2a; border-radius: 10px;">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between bg-dark" style="border-bottom: 1px solid #2a2a2a; border-radius: 10px 10px 0 0;">
-                <h6 class="m-0 font-weight-bold" style="color: #d4af37;">Statistik Pengunjung</h6>
+                <h6 class="m-0 font-weight-bold" style="color: #d4af37;">Statistik Kunjungan & Aktivitas</h6>
                 <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-ellipsis-v fa-sm fa-fw" style="color: #d4af37;"></i>
@@ -104,7 +104,7 @@
                 <div class="chart-area d-flex align-items-center justify-content-center" style="height: 320px; border: 1px dashed rgba(212, 175, 55, 0.3); border-radius: 8px;">
                     <div class="text-center">
                         <i class="fas fa-chart-area fa-3x mb-3" style="color: rgba(212, 175, 55, 0.2);"></i>
-                        <p class="text-white-50 mb-0">Area grafik statistik akan ditampilkan di sini</p>
+                        <p class="text-white-50 mb-0">Grafik statistik akan diaktifkan seiring aktivitas redaksi berjalan</p>
                     </div>
                 </div>
             </div>
@@ -120,21 +120,19 @@
             </div>
             <!-- Card Body -->
             <div class="card-body">
+                @forelse (\App\Models\Product::orderBy('created_at', 'desc')->take(3)->get() as $item)
                 <div class="mb-3 p-3" style="background-color: #222; border-radius: 8px; border-left: 3px solid #d4af37;">
-                    <div class="small" style="color: #d4af37;">Hari ini, 08:30</div>
-                    <div class="text-white mt-1" style="font-weight: 500;">Perkembangan Teknologi AI di Tahun 2026 Membawa Dampak Besar</div>
+                    <div class="small" style="color: #d4af37;">{{ $item->created_at->diffForHumans() }}</div>
+                    <div class="text-white mt-1" style="font-weight: 500;">{{ $item->name }}</div>
                 </div>
-                <div class="mb-3 p-3" style="background-color: #222; border-radius: 8px; border-left: 3px solid #d4af37;">
-                    <div class="small" style="color: #d4af37;">Kemarin, 14:15</div>
-                    <div class="text-white mt-1" style="font-weight: 500;">Perekonomian Global Menghadapi Tantangan Baru di Era Digital</div>
+                @empty
+                <div class="text-center py-4">
+                    <p class="text-white-50 mb-0">Belum ada berita diterbitkan.</p>
                 </div>
-                <div class="mb-3 p-3" style="background-color: #222; border-radius: 8px; border-left: 3px solid #d4af37;">
-                    <div class="small" style="color: #d4af37;">10 Mei 2026, 09:00</div>
-                    <div class="text-white mt-1" style="font-weight: 500;">Timnas Indonesia Berhasil Lolos ke Putaran Final Piala Asia</div>
-                </div>
+                @endforelse
                 
                 <div class="mt-4 text-center">
-                    <a href="#" class="btn btn-sm btn-outline-warning w-100" style="color: #d4af37; border-color: #d4af37; border-radius: 20px;">Lihat Semua Berita <i class="fas fa-arrow-right ml-1"></i></a>
+                    <a href="{{ route('admin.berita.index') }}" class="btn btn-sm btn-outline-warning w-100" style="color: #d4af37; border-color: #d4af37; border-radius: 20px;">Lihat Semua Berita <i class="fas fa-arrow-right ml-1"></i></a>
                 </div>
             </div>
         </div>

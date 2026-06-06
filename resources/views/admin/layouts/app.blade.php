@@ -88,15 +88,15 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded" style="background-color: #222 !important; border: 1px solid #333;">
                         <h6 class="collapse-header" style="color: #d4af37;">Menu Berita:</h6>
-                        <a class="collapse-item" href="#" style="color: #ccc;">Semua Berita</a>
-                        <a class="collapse-item" href="#" style="color: #ccc;">Tambah Berita</a>
+                        <a class="collapse-item" href="{{ route('admin.berita.index') }}" style="color: #ccc;">Semua Berita</a>
+                        <a class="collapse-item" href="{{ route('admin.berita.create') }}" style="color: #ccc;">Tambah Berita</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item: Kategori -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin.kategori.index') }}">
                     <i class="fas fa-fw fa-tags"></i>
                     <span>Kategori</span>
                 </a>
@@ -104,7 +104,7 @@
 
             <!-- Nav Item: Komentar -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin.komentar.index') }}">
                     <i class="fas fa-fw fa-comments"></i>
                     <span>Komentar</span>
                 </a>
@@ -120,7 +120,7 @@
 
             <!-- Nav Item: Laporan -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin.statistik.index') }}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Statistik & Laporan</span>
                 </a>
@@ -128,7 +128,7 @@
 
             <!-- Nav Item: Pengguna -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin.pengguna.index') }}">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Kelola Pengguna</span>
                 </a>
@@ -136,7 +136,7 @@
 
             <!-- Nav Item: Pengaturan -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin.pengaturan.index') }}">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Pengaturan</span>
                 </a>
